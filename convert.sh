@@ -113,7 +113,7 @@ cd $SRC/wincusors
 INSTALL_INF=$(find -name "*.inf")
 declare -A CURS
 
-CURS=([help]="help" [work]="progress" [busy]="wait" [cross]="crosshair" [text]="text" [handwrt]="pencil" [unavailiable]="circle" [vert]="size_ver" [horz]="size_hor" [dgn1]="size_fdiag" [dgn2]="size_bdiag" [move]="fleur" [pointer]="default" [link]="pointer")
+CURS=([help]="help" [work]="progress" [busy]="wait" [cross]="crosshair" [text]="text" [handwrt]="pencil" [unavailable]="circle" [vert]="size_ver" [horz]="size_hor" [dgn1]="size_fdiag" [dgn2]="size_bdiag" [move]="fleur" [pointer]="default" [link]="pointer")
 
 THEME=$(grep 'SCHEME_NAME' *.inf | tail -n 1 | cut -f2 -d"=" | sed -e's/"//g' -e 's/^\s*//g'   -e 's/\s*$//g')" Cursors"
 sed -i "s/\r//g" *.inf
@@ -127,15 +127,16 @@ done
 
 ANIS=$(ls *.ani)
 
-for ani in ${ANIS[@]}
-do 
-    # echo $SRC/wincusors/${ani}
-    # ../../ani2ico $SRC/wincusors/${ani}
-    # 暂时不研究, ani 看不懂. 这个直接转换过的尺寸只有 160px 一种, 所以只是借用来提取 png
+# for ani in ${ANIS[@]}
+# do 
+#     # echo $SRC/wincusors/${ani}
+#     # ../../ani2ico $SRC/wincusors/${ani}
+#     # 暂时不研究, ani 看不懂. 这个直接转换过的尺寸只有 160px 一种, 所以只是借用来提取 png
+# done
 
-    # 如果不自己写 config, 这步完了直接用就行了
-    win2xcur ./*.{ani,cur} -o ../output/ 
-done
+# 如果不自己写 config, 这步完了直接用就行了
+    # win2xcur ./*.{ani,cur} -o ../output/ 
+    win2xcur ./*.ani -o ../output/
 
 if [ $old_config = "y" ];then
     cd $SRC/output
