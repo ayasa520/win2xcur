@@ -1,3 +1,4 @@
+24 0 0 x1/progress_000.png  116
 24 0 0 x1/progress_001.png  116
 24 0 0 x1/progress_002.png  116
 24 0 0 x1/progress_003.png  116
@@ -20,7 +21,7 @@
 24 0 0 x1/progress_020.png  116
 24 0 0 x1/progress_021.png  116
 24 0 0 x1/progress_022.png  116
-30 0 0 x1/progress_023.png  116
+30 0 0 x1_25/progress_000.png 116
 30 0 0 x1_25/progress_001.png 116
 30 0 0 x1_25/progress_002.png 116
 30 0 0 x1_25/progress_003.png 116
@@ -42,8 +43,8 @@
 30 0 0 x1_25/progress_019.png 116
 30 0 0 x1_25/progress_020.png 116
 30 0 0 x1_25/progress_021.png 116
-36 0 0 x1_25/progress_022.png 116
-36 0 0 x1_25/progress_023.png 116
+30 0 0 x1_25/progress_022.png 116
+36 0 0 x1_5/progress_000.png  116
 36 0 0 x1_5/progress_001.png  116
 36 0 0 x1_5/progress_002.png  116
 36 0 0 x1_5/progress_003.png  116
@@ -66,7 +67,7 @@
 36 0 0 x1_5/progress_020.png  116
 36 0 0 x1_5/progress_021.png  116
 36 0 0 x1_5/progress_022.png  116
-36 0 0 x1_5/progress_023.png  116
+48 0 0 x2/progress_000.png  116
 48 0 0 x2/progress_001.png  116
 48 0 0 x2/progress_002.png  116
 48 0 0 x2/progress_003.png  116
@@ -89,4 +90,3 @@
 48 0 0 x2/progress_020.png  116
 48 0 0 x2/progress_021.png  116
 48 0 0 x2/progress_022.png  116
-48 0 0 x2/progress_023.png  116

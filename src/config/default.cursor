@@ -1,3 +1,4 @@
+24 0 0 x1/default_000.png    116
 24 0 0 x1/default_001.png    116
 24 0 0 x1/default_002.png    116
 24 0 0 x1/default_003.png    116
@@ -9,7 +10,7 @@
 24 0 0 x1/default_009.png    116
 24 0 0 x1/default_010.png    116
 24 0 0 x1/default_011.png    116
-24 0 0 x1/default_012.png    116
+30 0 0 x1_25/default_000.png 116
 30 0 0 x1_25/default_001.png 116
 30 0 0 x1_25/default_002.png 116
 30 0 0 x1_25/default_003.png 116
@@ -21,7 +22,7 @@
 30 0 0 x1_25/default_009.png 116
 30 0 0 x1_25/default_010.png 116
 30 0 0 x1_25/default_011.png 116
-30 0 0 x1_25/default_012.png 116
+36 0 0 x1_5/default_000.png  116
 36 0 0 x1_5/default_001.png  116
 36 0 0 x1_5/default_002.png  116
 36 0 0 x1_5/default_003.png  116
@@ -33,7 +34,7 @@
 36 0 0 x1_5/default_009.png  116
 36 0 0 x1_5/default_010.png  116
 36 0 0 x1_5/default_011.png  116
-36 0 0 x1_5/default_012.png  116
+48 0 0 x2/default_000.png    116
 48 0 0 x2/default_001.png    116
 48 0 0 x2/default_002.png    116
 48 0 0 x2/default_003.png    116
@@ -45,4 +46,3 @@
 48 0 0 x2/default_009.png    116
 48 0 0 x2/default_010.png    116
 48 0 0 x2/default_011.png    116
-48 0 0 x2/default_012.png    116

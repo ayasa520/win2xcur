@@ -4,7 +4,6 @@
 08e8e1c95fe2fc01f976f1e063a24ccd progress
 3ecb610c1bf2410f44200f48c40d3599 progress
 5c6cd98b3f3ebcb1f9c7f1c204630408 help
-6407b0e94181790501fd1e167b474872 copy
 9d800788f1b08800ae810202380a0822 pointer
 d9ce0ab605698f320427677b458ad60b help
 e29285e634086352946a0e7090d73106 pointer
@@ -16,6 +15,7 @@ bottom_side size_ver
 col-resize size_hor
 cross crosshair
 e-resize size_hor
+w-resize size_hor
 half-busy progress
 h_double_arrow size_hor
 left_ptr default
@@ -44,4 +44,4 @@ ul_angle top_left_corner
 ur_angle top_right_corner
 watch wait
 whats_this help
-w-resize size_hor
+whats_this help

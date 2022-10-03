@@ -2,7 +2,7 @@
 
 ROOT_UID=0
 DEST_DIR=
-THEME_NAME=$(grep "Name" dist/index.theme | sed 's/.*=\(.*\)Cursors$/\1/')
+THEME_NAME=$(grep "Name" dist/index.theme | sed 's/.*=\(.*\) Cursors$/\1/')
 
 # Destination directory
 if [ "$UID" -eq "$ROOT_UID" ]; then
