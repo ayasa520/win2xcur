@@ -102,9 +102,9 @@ fi
 SRC=$PWD/src
 BUILD="$SRC/../dist"
 
-mkdir -p $SRC/output $SRC/config
+mkdir -p "$SRC/output" "$SRC/config"
 
-cd $SRC/wincursors
+cd "$SRC/wincursors"
 
 INSTALL_INF=$(find -name "*.inf")
 declare -A CURS
@@ -114,7 +114,7 @@ CURS=([help]="help" [work]="progress" [busy]="wait" [cross]="crosshair" [text]="
 THEME=$(grep 'SCHEME_NAME' *.inf | tail -n 1 | cut -f2 -d"=" | sed -e's/"//g' -e 's/^\s*//g'   -e 's/\s*$//g')" Cursors"
 sed -i "s/\r//g" *.inf
 
-for key in ${!CURS[@]}
+for key in "${!CURS[@]}"
 do
     name=$(grep "^${key}" *.inf | tail -n 1 | cut -f2 -d'=' | sed -e "s/\s*\([A-Za-z0-9 ]*\)\.ani/\1.ani/" -e 's/\"//g' -e 's/^\s*//g'   -e 's/\s*$//g')
     echo "rename $name to ${CURS[${key}]}.ani"
@@ -136,8 +136,11 @@ ANIS=$(ls *.ani)
 
 case $input in
         [yY]*)
-                cd $SRC/output
-                mkdir -p $SRC/png
+                cd "$SRC/output"
+                if [ -d "$SRC/png" ]; then
+                    rm -rf "$SRC/png"
+                fi
+                mkdir -p "$SRC/png"
 
                 XCURS=$(ls)
 
@@ -157,9 +160,12 @@ case $input in
                 rm -rf x1 x1_25 x1_5 x2 output
                 ;;
         [nN]*)
-            OUTPUT="$BUILD"/cursors
-                mkdir -p $OUTPUT
-                mv $SRC/output/* $OUTPUT
+                OUTPUT="$BUILD"/cursors
+                if [ -d "$BUILD" ]; then
+                    rm -rf "$BUILD"
+                fi
+                mkdir -p "$OUTPUT"
+                mv "$SRC"/output/* "$OUTPUT"
 
                 INDEX="$OUTPUT/../index.theme"
                 if [ ! -e "$OUTPUT/../$INDEX" ]; then
@@ -173,7 +179,6 @@ case $input in
                 ln -s progress 08e8e1c95fe2fc01f976f1e063a24ccd 
                 ln -s progress 3ecb610c1bf2410f44200f48c40d3599 
                 ln -s help 5c6cd98b3f3ebcb1f9c7f1c204630408 
-                ln -s copy 6407b0e94181790501fd1e167b474872 
                 ln -s pointer 9d800788f1b08800ae810202380a0822 
                 ln -s help d9ce0ab605698f320427677b458ad60b 
                 ln -s pointer e29285e634086352946a0e7090d73106 

@@ -1,3 +1,4 @@
+24 0 0 x1/help_000.png 133
 24 0 0 x1/help_001.png 133
 24 0 0 x1/help_002.png 133
 24 0 0 x1/help_003.png 133
@@ -13,7 +14,7 @@
 24 0 0 x1/help_013.png 133
 24 0 0 x1/help_014.png 133
 24 0 0 x1/help_015.png 133
-24 0 0 x1/help_016.png 133
+30 0 0 x1_25/help_000.png 133
 30 0 0 x1_25/help_001.png 133
 30 0 0 x1_25/help_002.png 133
 30 0 0 x1_25/help_003.png 133
@@ -29,7 +30,7 @@
 30 0 0 x1_25/help_013.png 133
 30 0 0 x1_25/help_014.png 133
 30 0 0 x1_25/help_015.png 133
-30 0 0 x1_25/help_016.png 133
+36 0 0 x1_5/help_000.png 133
 36 0 0 x1_5/help_001.png 133
 36 0 0 x1_5/help_002.png 133
 36 0 0 x1_5/help_003.png 133
@@ -45,7 +46,7 @@
 36 0 0 x1_5/help_013.png 133
 36 0 0 x1_5/help_014.png 133
 36 0 0 x1_5/help_015.png 133
-36 0 0 x1_5/help_016.png 133
+48 0 0 x2/help_000.png 133
 48 0 0 x2/help_001.png 133
 48 0 0 x2/help_002.png 133
 48 0 0 x2/help_003.png 133
@@ -61,4 +62,3 @@
 48 0 0 x2/help_013.png 133
 48 0 0 x2/help_014.png 133
 48 0 0 x2/help_015.png 133
-48 0 0 x2/help_016.png 133

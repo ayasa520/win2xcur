@@ -1,3 +1,4 @@
+24 0 0 x1/pointer_000.png 116
 24 0 0 x1/pointer_001.png 116
 24 0 0 x1/pointer_002.png 116
 24 0 0 x1/pointer_003.png 116
@@ -14,7 +15,7 @@
 24 0 0 x1/pointer_014.png 116
 24 0 0 x1/pointer_015.png 116
 24 0 0 x1/pointer_016.png 116
-24 0 0 x1/pointer_017.png 116
+30 0 0 x1_25/pointer_000.png 116
 30 0 0 x1_25/pointer_001.png 116
 30 0 0 x1_25/pointer_002.png 116
 30 0 0 x1_25/pointer_003.png 116
@@ -31,7 +32,7 @@
 30 0 0 x1_25/pointer_014.png 116
 30 0 0 x1_25/pointer_015.png 116
 30 0 0 x1_25/pointer_016.png 116
-30 0 0 x1_25/pointer_017.png 116
+36 0 0 x1_5/pointer_000.png 116
 36 0 0 x1_5/pointer_001.png 116
 36 0 0 x1_5/pointer_002.png 116
 36 0 0 x1_5/pointer_003.png 116
@@ -48,7 +49,7 @@
 36 0 0 x1_5/pointer_014.png 116
 36 0 0 x1_5/pointer_015.png 116
 36 0 0 x1_5/pointer_016.png 116
-36 0 0 x1_5/pointer_017.png 116
+48 0 0 x2/pointer_000.png 116
 48 0 0 x2/pointer_001.png 116
 48 0 0 x2/pointer_002.png 116
 48 0 0 x2/pointer_003.png 116
@@ -65,4 +66,3 @@
 48 0 0 x2/pointer_014.png 116
 48 0 0 x2/pointer_015.png 116
 48 0 0 x2/pointer_016.png 116
-48 0 0 x2/pointer_017.png 116
