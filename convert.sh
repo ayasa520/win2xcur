@@ -62,11 +62,7 @@ function create {
 	echo -e "Generating Theme Index... DONE"
 }
 
-echo "是否使用已有的配置文件? 如果是, 将已有配置文件放入 config 目录"
-select old_config in 是 否;
-do
-    break
-done
+read -p "是否使用已有的配置文件? 如果是, 将已有配置文件放入 config 目录 [y/n]" input
 
 if [ ! "$(which xcursorgen 2> /dev/null)" ]; then
   echo xorg-xcursorgen needs to be installed to generate the cursors.
@@ -108,7 +104,7 @@ BUILD="$SRC/../dist"
 
 mkdir -p $SRC/output $SRC/config
 
-cd $SRC/wincusors
+cd $SRC/wincursors
 
 INSTALL_INF=$(find -name "*.inf")
 declare -A CURS
@@ -138,84 +134,91 @@ ANIS=$(ls *.ani)
     # win2xcur ./*.{ani,cur} -o ../output/ 
     win2xcur ./*.ani -o ../output/
 
-if [ $old_config = "y" ];then
-    cd $SRC/output
-    mkdir -p $SRC/png
+case $input in
+        [yY]*)
+                cd $SRC/output
+                mkdir -p $SRC/png
 
-    XCURS=$(ls)
+                XCURS=$(ls)
 
-    for xcur in ${XCURS}
-    do
-        xcur2png -d ../png ${xcur}
-    done
+                for xcur in ${XCURS}
+                do
+                    xcur2png -d ../png ${xcur}
+                done
 
-    # config 目前得自己写, 也许 ani 文件中有信息, 但我暂时看不懂
-    rm *.conf 
-    # generate pixmaps from svg source
+                # config 目前得自己写, 也许 ani 文件中有信息, 但我暂时看不懂
+                rm *.conf 
+                # generate pixmaps from svg source
 
-    create png
+                create png
 
 
-    cd "$SRC"
-    rm -rf x1 x1_25 x1_5 x2 output
-else
-    OUTPUT="$BUILD"/cursors
-    mkdir -p $OUTPUT
-    mv $SRC/output/* $OUTPUT
+                cd "$SRC"
+                rm -rf x1 x1_25 x1_5 x2 output
+                ;;
+        [nN]*)
+            OUTPUT="$BUILD"/cursors
+                mkdir -p $OUTPUT
+                mv $SRC/output/* $OUTPUT
 
-    INDEX="$OUTPUT/../index.theme"
-	if [ ! -e "$OUTPUT/../$INDEX" ]; then
-		touch "$INDEX"
-		echo -e "[Icon Theme]\nName=$THEME\n" > "$INDEX"
-	fi
-    cd $OUTPUT
-    ln -s progress 00000000000000020006000e7e9ffc3f 
-    ln -s size_ver 00008160000006810000408080010102 
-    ln -s circle 03b6e0fcb3499374a867c041f52298f0 
-    ln -s progress 08e8e1c95fe2fc01f976f1e063a24ccd 
-    ln -s progress 3ecb610c1bf2410f44200f48c40d3599 
-    ln -s help 5c6cd98b3f3ebcb1f9c7f1c204630408 
-    ln -s copy 6407b0e94181790501fd1e167b474872 
-    ln -s alias 640fb0e74195791501fd1ed57b41487f 
-    ln -s pointer 9d800788f1b08800ae810202380a0822 
-    ln -s help d9ce0ab605698f320427677b458ad60b 
-    ln -s pointer e29285e634086352946a0e7090d73106 
-    ln -s fleur all-scroll
-    ln -s default arrow 
-    ln -s size_bdiag bottom_left_corner 
-    ln -s size_fdiag bottom_right_corner 
-    ln -s size_ver bottom_side 
-    ln -s size_hor col-resize
-    ln -s crosshair cross 
-    ln -s size_hor e-resize 
-    ln -s progress half-busy
-    ln -s size_hor h_double_arrow 
-    ln -s default left_ptr 
-    ln -s progress left_ptr_watch 
-    ln -s size_hor left_side 
-    ln -s bottom_left_corner ll_angle 
-    ln -s bottom_right_corner lr_angle 
-    ln -s top_right_corner ne-resize
-    ln -s size_ver n-resize
-    ln -s top_left_corner nw-resize 
-    ln -s help question_arrow 
-    ln -s size_hor right_side 
-    ln -s size_ver row-resize 
-    ln -s size_hor sb_h_double_arrow 
-    ln -s size_ver sb_v_double_arrow 
-    ln -s bottom_right_corner se-resize 
-    ln -s fleur size_all 
-    ln -s col-resize split_h 
-    ln -s row-resize split_v 
-    ln -s size_ver s-resize 
-    ln -s bottom_left_corner sw-resize
-    ln -s size_fdiag top_left_corner 
-    ln -s size_bdiag top_right_corner 
-    ln -s size_ver top_side 
-    ln -s top_left_corner ul_angle 
-    ln -s top_right_corner ur_angle 
-    ln -s wait watch 
-    ln -s help whats_this 
-    ln -s size_hor w-resize
-fi
+                INDEX="$OUTPUT/../index.theme"
+                if [ ! -e "$OUTPUT/../$INDEX" ]; then
+                    touch "$INDEX"
+                    echo -e "[Icon Theme]\nName=$THEME\n" > "$INDEX"
+                fi
+                cd $OUTPUT
+                ln -s progress 00000000000000020006000e7e9ffc3f 
+                ln -s size_ver 00008160000006810000408080010102 
+                ln -s circle 03b6e0fcb3499374a867c041f52298f0 
+                ln -s progress 08e8e1c95fe2fc01f976f1e063a24ccd 
+                ln -s progress 3ecb610c1bf2410f44200f48c40d3599 
+                ln -s help 5c6cd98b3f3ebcb1f9c7f1c204630408 
+                ln -s copy 6407b0e94181790501fd1e167b474872 
+                ln -s pointer 9d800788f1b08800ae810202380a0822 
+                ln -s help d9ce0ab605698f320427677b458ad60b 
+                ln -s pointer e29285e634086352946a0e7090d73106 
+                ln -s fleur all-scroll
+                ln -s default arrow 
+                ln -s size_bdiag bottom_left_corner 
+                ln -s size_fdiag bottom_right_corner 
+                ln -s size_ver bottom_side 
+                ln -s size_hor col-resize
+                ln -s crosshair cross 
+                ln -s size_hor e-resize 
+                ln -s progress half-busy
+                ln -s size_hor h_double_arrow 
+                ln -s default left_ptr 
+                ln -s progress left_ptr_watch 
+                ln -s size_hor left_side 
+                ln -s bottom_left_corner ll_angle 
+                ln -s bottom_right_corner lr_angle 
+                ln -s top_right_corner ne-resize
+                ln -s size_ver n-resize
+                ln -s top_left_corner nw-resize 
+                ln -s help question_arrow 
+                ln -s size_hor right_side 
+                ln -s size_ver row-resize 
+                ln -s size_hor sb_h_double_arrow 
+                ln -s size_ver sb_v_double_arrow 
+                ln -s bottom_right_corner se-resize 
+                ln -s fleur size_all 
+                ln -s col-resize split_h 
+                ln -s row-resize split_v 
+                ln -s size_ver s-resize 
+                ln -s bottom_left_corner sw-resize
+                ln -s size_fdiag top_left_corner 
+                ln -s size_bdiag top_right_corner 
+                ln -s size_ver top_side 
+                ln -s top_left_corner ul_angle 
+                ln -s top_right_corner ur_angle 
+                ln -s wait watch 
+                ln -s help whats_this 
+                ln -s size_hor w-resize
+
+                ;;
+        *)
+                echo "Just enter y or n, please."
+                exit
+                ;;
+esac
 
