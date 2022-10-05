@@ -161,7 +161,8 @@ THEME=$(grep 'SCHEME_NAME' *.inf | tail -n 1 | cut -f2 -d"=" | sed -e's/"//g' -e
 for key in "${!CURS[@]}"; do
 	name=$(grep -i "^${key}" *.inf | tail -n 1 | cut -f2 -d'=' | sed -e "s/\s*\([A-Za-z0-9 ]*\)\.ani/\1.ani/" -e 's/\"//g' -e 's/^\s*//g' -e 's/\s*$//g')
 	echo "rename $name to ${CURS[${key}]}.ani"
-	perl-rename "s/$name/${CURS[${key}]}.ani/" *.ani
+    old_name=$(echo $name | sed -e "s/\\[/\\\[/g" -e "s/\\]/\\\]/g")
+	perl-rename "s/$old_name/${CURS[${key}]}.ani/" *.ani
 done
 
 ANIS=$(ls *.ani)
