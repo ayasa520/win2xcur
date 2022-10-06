@@ -5,7 +5,10 @@ has_command() {
 }
 
 function create {
-	cd "$SRC"
+	cd "$SRC" || exit
+    if [ -d "$SRC/x1" ] || [ -d "$SRC/x1_25" ] || [ -d "$SRC/x1_5" ] || [ -d "$SRC/x2" ]; then
+        rm -rf "$SRC/x1" "$SRC/x1_25" "$SRC/x1_5" "$SRC/x2"
+    fi
 	mkdir -p x1 x1_25 x1_5 x2
 
 	tmp_fifofile="/tmp/$$.fifo"
@@ -13,7 +16,7 @@ function create {
 	exec 6<>$tmp_fifofile # 将FD6指向FIFO类型
 	rm $tmp_fifofile      #删也可以，
 
-	thread_num=5 # max thread count
+	thread_num=10 # max thread count
 	for ((i = 0; i < ${thread_num}; i++)); do
 		echo
 	done >&6
@@ -144,28 +147,28 @@ declare -A SIZE_ARRAY
 SIZE_ARRAY=([x1]=24 [x1_25]=30 [x1_5]=36 [x2]=48)
 mkdir -p "$SRC/output" "$SRC/config"
 
-cd "$SRC/wincursors"
+cd "$SRC/wincursors" || exit
 
-INSTALL_INF=$(ls *.inf)
-if [[ $(file -i $INSTALL_INF) =~ "iso-8859-1" ]]; then 
-    iconv -f gb18030 -t UTF-8 $INSTALL_INF -o $INSTALL_INF
+INSTALL_INF=$(ls ./*.inf)
+if [[ $(file -i "$INSTALL_INF") =~ "iso-8859-1" ]]; then 
+    iconv -f gb18030 -t UTF-8 "$INSTALL_INF" -o "$INSTALL_INF"
 fi 
 
 declare -A CURS
 
-CURS=([help]="help" [work]="progress" [busy]="wait" [cross]="crosshair" [text]="text" [handwrt]="pencil" [unavailable]="circle" [vert]="size_ver" [horz]="size_hor" [dgn1]="size_fdiag" [dgn2]="size_bdiag" [move]="fleur" [pointer]="default" [link]="pointer" [hand]="pencil")
+CURS=([help]="help" [work]="progress" [busy]="wait" [cross]="crosshair" [text]="text" [handwrt]="pencil" [unavailiable]="circle" [unavailable]="circle" [vert]="size_ver" [horz]="size_hor" [dgn1]="size_fdiag" [dgn2]="size_bdiag" [move]="fleur" [pointer]="default" [link]="pointer" [hand]="pencil")
 
-THEME=$(grep 'SCHEME_NAME' *.inf | tail -n 1 | cut -f2 -d"=" | sed -e's/"//g' -e 's/^\s*//g' -e 's/\s*$//g')" Cursors"
+THEME=$(grep 'SCHEME_NAME' ./*.inf | tail -n 1 | cut -f2 -d"=" | sed -e's/"//g' -e 's/^\s*//g' -e 's/\s*$//g')" Cursors"
 # sed -i "s/\r//g" *.inf
 
 for key in "${!CURS[@]}"; do
-	name=$(grep -i "^${key}" *.inf | tail -n 1 | cut -f2 -d'=' | sed -e "s/\s*\([A-Za-z0-9 ]*\)\.ani/\1.ani/" -e 's/\"//g' -e 's/^\s*//g' -e 's/\s*$//g')
+	name=$(grep -i "^${key}" ./*.inf | tail -n 1 | cut -f2 -d'=' | sed -e "s/\s*\([A-Za-z0-9 ]*\)\.ani/\1.ani/" -e 's/\"//g' -e 's/^\s*//g' -e 's/\s*$//g')
 	echo "rename $name to ${CURS[${key}]}.ani"
-    old_name=$(echo $name | sed -e "s/\\[/\\\[/g" -e "s/\\]/\\\]/g")
-	perl-rename "s/$old_name/${CURS[${key}]}.ani/" *.ani
+    old_name=$(echo "$name" | sed -e "s/\\[/\\\[/g" -e "s/\\]/\\\]/g")
+	perl-rename "s/$old_name/${CURS[${key}]}.ani/" "$name"
 done
 
-ANIS=$(ls *.ani)
+# ANIS=$(ls ./*.ani)
 
 # for ani in ${ANIS[@]}
 # do
@@ -176,9 +179,14 @@ ANIS=$(ls *.ani)
 
 # 如果不自己写 config, 这步完了直接用就行了
 # win2xcur ./*.{ani,cur} -o ../output/
+if [ -d "$SRC/output" ]; then
+	rm -rf "$SRC/output"
+fi
+mkdir "$SRC/output"
+
 win2xcur ./*.ani -o ../output/
 
-cd "$SRC/output"
+cd "$SRC/output" || exit
 if [ -d "$SRC/png" ]; then
 	rm -rf "$SRC/png"
 fi
@@ -187,22 +195,22 @@ mkdir -p "$SRC/png"
 XCURS=$(ls)
 
 for xcur in ${XCURS}; do
-	"$SRC"/xcur2png -d ../png ${xcur}
+	"$SRC"/xcur2png -d ../png "${xcur}"
 done
 
 
-perl-rename 's/(.*).conf/$1.cursor/' *.conf
+perl-rename 's/(.*).conf/$1.cursor/' ./*.conf
 rm ../config/*
-mv *.cursor ../config
+mv ./*.cursor ../config
 # generate pixmaps from svg source
-cd ../config
-CONFS=$(ls *.cursor)
+cd ../config || exit
+CONFS=$(ls ./*.cursor)
 
 for CONF in ${CONFS}; do
-	process_config ${CONF}
+	process_config "${CONF}"
 done
 
 create png
 
-cd "${SRC}"
+cd "${SRC}" || exit
 rm -rf x1 x1_25 x1_5 x2 output
