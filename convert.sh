@@ -156,13 +156,17 @@ fi
 
 declare -A CURS
 
-CURS=([help]="help" [work]="progress" [busy]="wait" [cross]="crosshair" [text]="text" [handwrt]="pencil" [unavailiable]="circle" [unavailable]="circle" [vert]="size_ver" [horz]="size_hor" [dgn1]="size_fdiag" [dgn2]="size_bdiag" [move]="fleur" [pointer]="default" [link]="pointer" [hand]="pencil")
+# TODO 看来每个人写的映射不同, 所以还是得从文件本身读, 但是不太确定Sheme是否有顺序
+CURS=([arrow]="default" [working]="progress" [pen]="pencil" [no]="circle" [ns]="size_ver" [we]="size_hor" [nwse]="size_fdiag" [nesw]="size_bdiag" [beam]="text" [help]="help" [work]="progress" [busy]="wait" [cross]="crosshair" [text]="text" [handwrt]="pencil" [unavailiable]="circle" [unavailable]="circle" [vert]="size_ver" [horz]="size_hor" [dgn1]="size_fdiag" [dgn2]="size_bdiag" [move]="fleur" [pointer]="default" [link]="pointer" [hand]="pencil")
 
 THEME=$(grep 'SCHEME_NAME' ./*.inf | tail -n 1 | cut -f2 -d"=" | sed -e's/"//g' -e 's/^\s*//g' -e 's/\s*$//g')" Cursors"
 # sed -i "s/\r//g" *.inf
 
 for key in "${!CURS[@]}"; do
 	name=$(grep -i "^${key}" ./*.inf | tail -n 1 | cut -f2 -d'=' | sed -e "s/\s*\([A-Za-z0-9 ]*\)\.ani/\1.ani/" -e 's/\"//g' -e 's/^\s*//g' -e 's/\s*$//g')
+    if [[ $name = "" ]]; then
+        continue
+    fi
 	echo "rename $name to ${CURS[${key}]}.ani"
     old_name=$(echo "$name" | sed -e "s/\\[/\\\[/g" -e "s/\\]/\\\]/g")
 	perl-rename "s/$old_name/${CURS[${key}]}.ani/" "$name"
