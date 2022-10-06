@@ -144,7 +144,7 @@ fi
 SRC=$PWD/src
 BUILD="$SRC/../dist"
 declare -A SIZE_ARRAY
-SIZE_ARRAY=([x1]=24 [x1_25]=30 [x1_5]=36 [x2]=48)
+SIZE_ARRAY=([x1]=32 [x1_25]=40 [x1_5]=48 [x2]=64)
 mkdir -p "$SRC/output" "$SRC/config"
 
 cd "$SRC/wincursors" || exit
