@@ -163,7 +163,7 @@ THEME=$(grep 'SCHEME_NAME' ./*.inf | tail -n 1 | cut -f2 -d"=" | sed -e's/"//g' 
 # sed -i "s/\r//g" *.inf
 
 for key in "${!CURS[@]}"; do
-	name=$(grep -i "^${key}" ./*.inf | tail -n 1 | cut -f2 -d'=' | sed -e "s/\s*\([A-Za-z0-9 ]*\)\.ani/\1.ani/" -e 's/\"//g' -e 's/^\s*//g' -e 's/\s*$//g')
+	name=$(grep -w "${key}" ./*.inf | tail -n 1 | cut -f2 -d'=' | sed -e "s/\s*\([A-Za-z0-9 ]*\)\.ani/\1.ani/" -e 's/\"//g' -e 's/^\s*//g' -e 's/\s*$//g')
     if [[ $name = "" ]]; then
         continue
     fi
